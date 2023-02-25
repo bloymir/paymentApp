@@ -16,6 +16,7 @@
 		6864F76629A989BD0016EE6D /* ViewScrolleable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6864F76529A989BD0016EE6D /* ViewScrolleable.swift */; };
 		6864F76829A98FC00016EE6D /* KeyBoardDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6864F76729A98FC00016EE6D /* KeyBoardDisplayable.swift */; };
 		6864F77229A9ABB80016EE6D /* TextField+Padding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6864F77129A9ABB80016EE6D /* TextField+Padding.swift */; };
+		6864F77429A9B3D70016EE6D /* MehodPageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6864F77329A9B3D70016EE6D /* MehodPageModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		6864F76529A989BD0016EE6D /* ViewScrolleable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewScrolleable.swift; sourceTree = "<group>"; };
 		6864F76729A98FC00016EE6D /* KeyBoardDisplayable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyBoardDisplayable.swift; sourceTree = "<group>"; };
 		6864F77129A9ABB80016EE6D /* TextField+Padding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextField+Padding.swift"; sourceTree = "<group>"; };
+		6864F77329A9B3D70016EE6D /* MehodPageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MehodPageModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +89,7 @@
 		6864F75E29A970750016EE6D /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				6864F77329A9B3D70016EE6D /* MehodPageModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -212,6 +215,7 @@
 			files = (
 				6864F74E29A96D410016EE6D /* ViewController.swift in Sources */,
 				6864F76229A971D20016EE6D /* HomeAppVC.swift in Sources */,
+				6864F77429A9B3D70016EE6D /* MehodPageModel.swift in Sources */,
 				6864F74A29A96D410016EE6D /* AppDelegate.swift in Sources */,
 				6864F77229A9ABB80016EE6D /* TextField+Padding.swift in Sources */,
 				6864F74C29A96D410016EE6D /* SceneDelegate.swift in Sources */,

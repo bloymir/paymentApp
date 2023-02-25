@@ -45,17 +45,12 @@ final class HomeAppVC: UIViewController {
         textField.layer.cornerRadius = 10
         textField.backgroundColor = .systemBlue.withAlphaComponent(0.2)
         textField.textColor = .systemBlue
-      
         return textField
     }()
     
     private let pageButton: UIButton = {
-        //var configuration = UIButton.Configuration.filled()
-        //configuration.title = "Pagar"
-        //configuration.buttonSize = .large
         let button = UIButton()
         button.setTitle("Continuar", for: .normal)
-        //button.configuration = configuration
         button.backgroundColor = .systemBlue
         button.heightAnchor.constraint(equalToConstant: 50).isActive = true
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -77,7 +72,6 @@ final class HomeAppVC: UIViewController {
     private func configureUI(){
         view.backgroundColor = .systemBackground
         title = "Paymant App"
-        
     }
     
     private func configureConstraints() {
@@ -101,14 +95,31 @@ final class HomeAppVC: UIViewController {
     }
     
     private func configTargets() {
+        mountText.delegate = self
+        mountText.addTarget(self, action: #selector(textFieldDidBeginEditing), for: .editingChanged)
+        mountText.addTarget(self, action: #selector(textFieldShouldReturn), for: .editingDidEnd)
         pageButton.addTarget(self, action: #selector(pageButtonPressed), for: .touchUpInside)
     }
     
-    @objc private func pageButtonPressed() {
-        
+    @objc private func pageButtonPressed(_ sender: UIButton) {
+        guard let value = mountText.text else { return }
+        mount = Int(value) ?? 0
     }
 }
 
 extension HomeAppVC: ViewScrolleable {}
+
 extension HomeAppVC: KeyBoardDisplayable {}
 
+extension HomeAppVC: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        guard let text = mountText.text, !text.isEmpty else { return }
+        print(text)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        textField.text = String()
+        return true
+    }
+}
