@@ -5,7 +5,7 @@
 //  Created by nelson tapia on 25-02-23.
 //
 
-import UIKit
+import Foundation
 import Alamofire
 
 final class PaymentMethodService {

@@ -7,9 +7,11 @@
 import Foundation
 
 class PaymentMethodViewModel {
+ 
     func getPaymentMethods(completion: @escaping ([PaymentMethodResponse]?) -> Void) {
         PaymentMethodService.getPaymentMethods{ paymentMethod in
             completion(paymentMethod)
         }
     }
+     
 }
