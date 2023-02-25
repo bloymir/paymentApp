@@ -15,6 +15,7 @@
 		6864F76229A971D20016EE6D /* HomeAppVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6864F76129A971D20016EE6D /* HomeAppVC.swift */; };
 		6864F76629A989BD0016EE6D /* ViewScrolleable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6864F76529A989BD0016EE6D /* ViewScrolleable.swift */; };
 		6864F76829A98FC00016EE6D /* KeyBoardDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6864F76729A98FC00016EE6D /* KeyBoardDisplayable.swift */; };
+		6864F77229A9ABB80016EE6D /* TextField+Padding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6864F77129A9ABB80016EE6D /* TextField+Padding.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		6864F76129A971D20016EE6D /* HomeAppVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAppVC.swift; sourceTree = "<group>"; };
 		6864F76529A989BD0016EE6D /* ViewScrolleable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewScrolleable.swift; sourceTree = "<group>"; };
 		6864F76729A98FC00016EE6D /* KeyBoardDisplayable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyBoardDisplayable.swift; sourceTree = "<group>"; };
+		6864F77129A9ABB80016EE6D /* TextField+Padding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextField+Padding.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +109,7 @@
 		6864F76329A989970016EE6D /* Commons */ = {
 			isa = PBXGroup;
 			children = (
+				6864F76929A9A9920016EE6D /* Utils */,
 				6864F76429A989A40016EE6D /* Components */,
 			);
 			path = Commons;
@@ -119,6 +122,22 @@
 				6864F76729A98FC00016EE6D /* KeyBoardDisplayable.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		6864F76929A9A9920016EE6D /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				6864F77029A9ABA50016EE6D /* Extension */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		6864F77029A9ABA50016EE6D /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				6864F77129A9ABB80016EE6D /* TextField+Padding.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -194,6 +213,7 @@
 				6864F74E29A96D410016EE6D /* ViewController.swift in Sources */,
 				6864F76229A971D20016EE6D /* HomeAppVC.swift in Sources */,
 				6864F74A29A96D410016EE6D /* AppDelegate.swift in Sources */,
+				6864F77229A9ABB80016EE6D /* TextField+Padding.swift in Sources */,
 				6864F74C29A96D410016EE6D /* SceneDelegate.swift in Sources */,
 				6864F76629A989BD0016EE6D /* ViewScrolleable.swift in Sources */,
 				6864F76829A98FC00016EE6D /* KeyBoardDisplayable.swift in Sources */,

@@ -20,7 +20,7 @@ final class HomeAppVC: UIViewController {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "mercadopago")
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.heightAnchor.constraint(equalToConstant: 700).isActive = true
+        imageView.heightAnchor.constraint(equalToConstant: 200).isActive = true
         imageView.widthAnchor.constraint(equalToConstant: 200).isActive = true
         return imageView
     }()
@@ -39,11 +39,13 @@ final class HomeAppVC: UIViewController {
         textField.placeholder = "Ingrese el monto"
         textField.keyboardType = .numberPad
         textField.backgroundColor = .gray.withAlphaComponent(0.1)
-        textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 0))
-        textField.leftViewMode = .always
+        textField.padding()
         textField.heightAnchor.constraint(equalToConstant: 50).isActive = true
         textField.font = UIFont.systemFont(ofSize: 20)
         textField.layer.cornerRadius = 10
+        textField.backgroundColor = .systemBlue.withAlphaComponent(0.2)
+        textField.textColor = .systemBlue
+      
         return textField
     }()
     
@@ -103,7 +105,7 @@ final class HomeAppVC: UIViewController {
     }
     
     @objc private func pageButtonPressed() {
-        print("hola")
+        
     }
 }
 
