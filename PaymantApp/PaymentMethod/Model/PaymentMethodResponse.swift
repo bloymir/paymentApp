@@ -1,11 +1,11 @@
 //
-//  MehodPageModel.swift
+//  PaymentMethodPage.swift
 //  PaymantApp
 //
 //  Created by nelson tapia on 25-02-23.
 //
 
-struct MehodPageModel: Codable {
+struct PaymentMethodResponse: Decodable {
     let id: String?
     let name: String?
     let thumbnail: String?
