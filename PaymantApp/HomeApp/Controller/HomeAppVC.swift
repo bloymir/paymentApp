@@ -6,10 +6,13 @@
 //
 
 import UIKit
+import Combine
 
 final class HomeAppVC: UIViewController {
-    var mainScrollView: UIScrollView = UIScrollView()
-    var contentView: UIView = UIView()
+    
+    var mainScrollView = UIScrollView()
+    var contentView = UIView()
+    var cancellableBag =  Set<AnyCancellable>()
     
     private var mount: Int = 0
     
@@ -17,7 +20,7 @@ final class HomeAppVC: UIViewController {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "mercadopago")
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        imageView.heightAnchor.constraint(equalToConstant: 700).isActive = true
         imageView.widthAnchor.constraint(equalToConstant: 200).isActive = true
         return imageView
     }()
@@ -66,6 +69,7 @@ final class HomeAppVC: UIViewController {
         configureUI()
         configTargets()
         configureConstraints()
+        configKeyboradSuscription(mainScrollView: mainScrollView)
     }
     
     private func configureUI(){
@@ -104,3 +108,5 @@ final class HomeAppVC: UIViewController {
 }
 
 extension HomeAppVC: ViewScrolleable {}
+extension HomeAppVC: KeyBoardDisplayable {}
+
