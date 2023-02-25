@@ -21,6 +21,7 @@
 		6864F77E29A9B73D0016EE6D /* PaymentMethodResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6864F77D29A9B73D0016EE6D /* PaymentMethodResponse.swift */; };
 		6864F78529A9BA640016EE6D /* PaymentMethodService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6864F78429A9BA640016EE6D /* PaymentMethodService.swift */; };
 		6864F78729AA76CF0016EE6D /* PaymentMethodViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6864F78629AA76CF0016EE6D /* PaymentMethodViewModel.swift */; };
+		6864F78A29AAA2620016EE6D /* PaymentMethodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6864F78929AAA2620016EE6D /* PaymentMethodCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		6864F77D29A9B73D0016EE6D /* PaymentMethodResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethodResponse.swift; sourceTree = "<group>"; };
 		6864F78429A9BA640016EE6D /* PaymentMethodService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethodService.swift; sourceTree = "<group>"; };
 		6864F78629AA76CF0016EE6D /* PaymentMethodViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethodViewModel.swift; sourceTree = "<group>"; };
+		6864F78929AAA2620016EE6D /* PaymentMethodCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethodCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,6 +178,7 @@
 		6864F77729A9B5420016EE6D /* PaymentMethod */ = {
 			isa = PBXGroup;
 			children = (
+				6864F78829AAA2300016EE6D /* View */,
 				6864F77A29A9B5880016EE6D /* Model */,
 				6864F77929A9B5770016EE6D /* Controller */,
 				6864F77829A9B56E0016EE6D /* ViewModel */,
@@ -246,6 +249,14 @@
 				6864F74B29A96D410016EE6D /* SceneDelegate.swift */,
 			);
 			path = System;
+			sourceTree = "<group>";
+		};
+		6864F78829AAA2300016EE6D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6864F78929AAA2620016EE6D /* PaymentMethodCell.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -371,6 +382,7 @@
 				6864F74C29A96D410016EE6D /* SceneDelegate.swift in Sources */,
 				6864F76629A989BD0016EE6D /* ViewScrolleable.swift in Sources */,
 				6864F78529A9BA640016EE6D /* PaymentMethodService.swift in Sources */,
+				6864F78A29AAA2620016EE6D /* PaymentMethodCell.swift in Sources */,
 				6864F77C29A9B5E90016EE6D /* PaymentMethodVC.swift in Sources */,
 				6864F76829A98FC00016EE6D /* KeyBoardDisplayable.swift in Sources */,
 			);
