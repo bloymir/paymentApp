@@ -7,12 +7,11 @@
 
 import UIKit
 
-final class PaymentMethodVC: UIViewController, UITableViewDataSource {
+final class PaymentMethodVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     let paymentMethodViewModel = PaymentMethodViewModel()
     var paymentMethods: [PaymentMethodResponse]?
-    
-    
+ 
     
     private let devicesTableView: UITableView = {
         let tableview = UITableView()
@@ -30,16 +29,16 @@ final class PaymentMethodVC: UIViewController, UITableViewDataSource {
         super.viewDidLoad()
         configureUI()
         activityIndicator.center = self.view.center
-        //activityIndicator.startAnimating()
         bind()
 
     }
     
     func configureUI(){
     
-        devicesTableView.backgroundColor = .red
+        title = "Seleccione medio de pago"
         devicesTableView.dataSource = self
-        devicesTableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        devicesTableView.delegate = self
+        devicesTableView.register(PaymentMethodCell.self, forCellReuseIdentifier:"PaymentMethodCell")
         view.addSubview(devicesTableView)
         view.addSubview(activityIndicator)
         
@@ -49,7 +48,7 @@ final class PaymentMethodVC: UIViewController, UITableViewDataSource {
        
         
         NSLayoutConstraint.activate([
-            devicesTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            devicesTableView.topAnchor.constraint(equalTo: view.topAnchor),
             devicesTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             devicesTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             devicesTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -75,17 +74,19 @@ final class PaymentMethodVC: UIViewController, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = devicesTableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        let cell = devicesTableView.dequeueReusableCell(withIdentifier: "PaymentMethodCell", for: indexPath) as! PaymentMethodCell
         //let model = house[indexPath.row]
         let model = paymentMethodViewModel.dataArray[indexPath.row]
         
-        var listContentConfiguration = UIListContentConfiguration.cell()
-        listContentConfiguration.text = model.name
-    
-        cell.contentConfiguration = listContentConfiguration
+        cell.configure(model: model)
         return cell
     }
     
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+       let model = paymentMethodViewModel.dataArray[indexPath.row]
+       print(model.name)
+        
+    }
    
 }
 
