@@ -110,7 +110,6 @@ final class HomeAppVC: UIViewController {
         if !value.isEmpty {
             PaymentResumeModel.shared.amountToPage = Int(value)
             nextNavigation()
-            //presentResumeController()
             
         }
     }
@@ -121,14 +120,6 @@ final class HomeAppVC: UIViewController {
     
     private func presentResumeController(){
         let resumesheetViewController = ResumeSheetViewController()
-        
-        if let sheet = resumesheetViewController.sheetPresentationController {
-            sheet.detents = [.medium()]
-            sheet.selectedDetentIdentifier = .medium
-            sheet.prefersGrabberVisible = true
-            sheet.preferredCornerRadius = 20
-        }
-        
         present(resumesheetViewController, animated: true)
     }
 }
