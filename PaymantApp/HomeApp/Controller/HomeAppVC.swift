@@ -14,7 +14,6 @@ final class HomeAppVC: UIViewController {
     var contentView = UIView()
     var cancellableBag =  Set<AnyCancellable>()
     
-    private var mount: Int = 0
     
     private let logoImg: UIImageView = {
         let imageView = UIImageView()
@@ -56,7 +55,6 @@ final class HomeAppVC: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.titleLabel?.font = UIFont.systemFont(ofSize: 20)
         button.layer.cornerRadius = 10
-        
         return button
     }()
     
@@ -67,6 +65,13 @@ final class HomeAppVC: UIViewController {
         configTargets()
         configureConstraints()
         configKeyboradSuscription(mainScrollView: mainScrollView)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if PaymentResumeModel.shared.paymentCompleted {
+            presentResumeController()
+        } else { return }
     }
     
     private func configureUI(){
@@ -90,7 +95,6 @@ final class HomeAppVC: UIViewController {
             containerStack.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 30),
             containerStack.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -30),
             containerStack.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
-            
         ])
     }
     
@@ -103,7 +107,29 @@ final class HomeAppVC: UIViewController {
     
     @objc private func pageButtonPressed(_ sender: UIButton) {
         guard let value = mountText.text else { return }
-        mount = Int(value) ?? 0
+        if !value.isEmpty {
+            PaymentResumeModel.shared.amountToPage = Int(value)
+            nextNavigation()
+            //presentResumeController()
+            
+        }
+    }
+    
+    private func nextNavigation(){
+        self.navigationController?.pushViewController(PaymentMethodVC(), animated: true)
+    }
+    
+    private func presentResumeController(){
+        let resumesheetViewController = ResumeSheetViewController()
+        
+        if let sheet = resumesheetViewController.sheetPresentationController {
+            sheet.detents = [.medium()]
+            sheet.selectedDetentIdentifier = .medium
+            sheet.prefersGrabberVisible = true
+            sheet.preferredCornerRadius = 20
+        }
+        
+        present(resumesheetViewController, animated: true)
     }
 }
 

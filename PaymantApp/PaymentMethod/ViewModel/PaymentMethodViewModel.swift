@@ -18,9 +18,13 @@ class PaymentMethodViewModel {
     
     
     func retryDataList() {
+        let urlBase = Constants.kUrlBase
+        let paymentMethod = "\(Constants.kPaymentMethods)s"
+        let keyPublic = "?\(Constants.kKeyString)"
         
-        guard let url = URL(string: "https://api.mercadopago.com/v1/payment_methods?public_key=444a9ef5-8a6b-429f-abdf-587639155d88") else { return }
-        
+        guard let url = URL(string: "\(urlBase + paymentMethod + keyPublic)") else { return }
+        print(url)
+
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             guard let json = data else { return }
             

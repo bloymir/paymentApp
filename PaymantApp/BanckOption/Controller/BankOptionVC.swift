@@ -1,5 +1,5 @@
 //
-//  PaymentMethodVC.swift
+//  BankOptionVC.swift
 //  PaymantApp
 //
 //  Created by nelson tapia on 25-02-23.
@@ -7,18 +7,16 @@
 
 import UIKit
 
-final class PaymentMethodVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
-    let paymentMethodViewModel = PaymentMethodViewModel()
-    var paymentMethods: [PaymentMethodResponse]?
- 
+final class BankOptionVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    let bankOptionViewModel = BankOptionViewModel()
+    var bankOptions: [BankOptionResponse]?
+    
     private let devicesTableView: UITableView = {
         let tableview = UITableView()
         tableview.translatesAutoresizingMaskIntoConstraints = false
         return tableview
     }()
-    
-
     
     private let activityIndicator: UIActivityIndicatorView = {
         let activity = UIActivityIndicatorView(style: .large)
@@ -26,12 +24,11 @@ final class PaymentMethodVC: UIViewController, UITableViewDelegate, UITableViewD
         return activity
     }()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func loadView() {
+        super.loadView()
         configureUI()
         activityIndicator.center = self.view.center
         bind()
-
     }
     
     func configureUI(){
@@ -39,14 +36,13 @@ final class PaymentMethodVC: UIViewController, UITableViewDelegate, UITableViewD
         title = "Seleccione medio de pago"
         devicesTableView.dataSource = self
         devicesTableView.delegate = self
-        devicesTableView.register(PaymentMethodCell.self, forCellReuseIdentifier:"PaymentMethodCell")
+        devicesTableView.register(BankOptionCell.self, forCellReuseIdentifier:"BankOption")
         view.addSubview(devicesTableView)
         view.addSubview(activityIndicator)
         
         activityIndicator.startAnimating()
-        paymentMethodViewModel.retryDataList()
+        bankOptionViewModel.retryDataList()
         
-       
         
         NSLayoutConstraint.activate([
             devicesTableView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -60,7 +56,7 @@ final class PaymentMethodVC: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     private func bind(){
-        paymentMethodViewModel.refreshData = { [weak self] () in
+        bankOptionViewModel.refreshData = { [weak self] () in
             DispatchQueue.main.async {
                 self?.devicesTableView.reloadData()
                 self?.activityIndicator.stopAnimating()
@@ -69,32 +65,30 @@ final class PaymentMethodVC: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
     
-
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return paymentMethodViewModel.dataArray.count
+        return bankOptionViewModel.dataArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = devicesTableView.dequeueReusableCell(withIdentifier: "PaymentMethodCell", for: indexPath) as! PaymentMethodCell
-        //let model = house[indexPath.row]
-        let model = paymentMethodViewModel.dataArray[indexPath.row]
+        let cell = devicesTableView.dequeueReusableCell(withIdentifier: "BankOption", for: indexPath) as! BankOptionCell
         
+        let model = bankOptionViewModel.dataArray[indexPath.row]
+        
+//        cell.configure(model: model)
         cell.configure(model: model)
         return cell
     }
     
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-       let model = paymentMethodViewModel.dataArray[indexPath.row]
-       PaymentResumeModel.shared.paymentMethodId = model.id
-       PaymentResumeModel.shared.paymentMethodName = model.name
-       nextNavigation()
-      
-        
-    }
-    
-    private func nextNavigation(){
-        self.navigationController?.pushViewController(BankOptionVC(), animated: true)
-    }
-   
-}
+       let model = bankOptionViewModel.dataArray[indexPath.row]
+       
+      PaymentResumeModel.shared.bankOptionName = model.name
+      PaymentResumeModel.shared.bankOptionId = model.id
 
+      nextNavigation()
+    
+    }
+    private func nextNavigation(){
+        self.navigationController?.pushViewController(OddsViewController(), animated: true)
+    }
+}
