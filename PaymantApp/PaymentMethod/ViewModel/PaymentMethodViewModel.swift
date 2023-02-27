@@ -16,7 +16,6 @@ class PaymentMethodViewModel {
         }
     }
     
-    
     func retryDataList() {
         let urlBase = Constants.kUrlBase
         let paymentMethod = "\(Constants.kPaymentMethods)s"

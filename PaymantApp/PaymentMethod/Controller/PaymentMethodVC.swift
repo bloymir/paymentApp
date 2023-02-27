@@ -35,7 +35,7 @@ final class PaymentMethodVC: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func configureUI(){
-    
+
         title = "Seleccione medio de pago"
         devicesTableView.dataSource = self
         devicesTableView.delegate = self

@@ -1,10 +1,3 @@
-//
-//  HomeAppVC.swift
-//  PaymantApp
-//
-//  Created by nelson tapia on 24-02-23.
-//
-
 import UIKit
 import Combine
 
@@ -13,7 +6,6 @@ final class HomeAppVC: UIViewController {
     var mainScrollView = UIScrollView()
     var contentView = UIView()
     var cancellableBag =  Set<AnyCancellable>()
-    
     
     private let logoImg: UIImageView = {
         let imageView = UIImageView()
@@ -106,11 +98,12 @@ final class HomeAppVC: UIViewController {
     }
     
     @objc private func pageButtonPressed(_ sender: UIButton) {
+        PaymentResumeModel.shared.cleanShered()
+
         guard let value = mountText.text else { return }
         if !value.isEmpty {
-            PaymentResumeModel.shared.amountToPage = Int(value)
+            PaymentResumeModel.shared.amountToPage = Int(value) ?? 0
             nextNavigation()
-            
         }
     }
     

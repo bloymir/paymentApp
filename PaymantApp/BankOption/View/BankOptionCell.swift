@@ -32,10 +32,9 @@ class BankOptionCell: UITableViewCell {
         
         NSLayoutConstraint.activate([
             deviceImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 12),
-            deviceImageView.topAnchor.constraint(equalTo: topAnchor, constant: 12),
-            deviceImageView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -12),
             deviceImageView.widthAnchor.constraint(equalToConstant: 40),
             deviceImageView.heightAnchor.constraint(equalToConstant: 40),
+            deviceImageView.centerYAnchor.constraint(equalTo: centerYAnchor),
             
             deviceNameLabel.leadingAnchor.constraint(equalTo: deviceImageView.trailingAnchor, constant: 40),
             deviceNameLabel.centerYAnchor.constraint(equalTo: deviceImageView.centerYAnchor),

@@ -1,10 +1,3 @@
-//
-//  ResumeSheetViewController.swift
-//  PaymantApp
-//
-//  Created by nelson tapia on 26-02-23.
-//
-
 import UIKit
 
 class ResumeSheetViewController: UIViewController {
@@ -20,7 +13,7 @@ class ResumeSheetViewController: UIViewController {
     
     private let mountLabel: UILabel = {
         let label = UILabel()
-        label.text = "Monto a pagar $\(PaymentResumeModel.shared.amountToPage!) "
+        label.text = "Monto a pagar $\(PaymentResumeModel.shared.amountToPage) "
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 24)
         label.textColor = .white
@@ -50,7 +43,9 @@ class ResumeSheetViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 24)
         label.textColor = .white
+        label.numberOfLines = 0
         label.text = "Cuotas: \(PaymentResumeModel.shared.totalSelected!) "
+        label.textAlignment = .center
         return label
     }()
     
@@ -72,11 +67,10 @@ class ResumeSheetViewController: UIViewController {
     }
     
     func configureUI(){
-        view.addSubview(tittleLabel)
-        view.addSubview(mountLabel)
-        view.addSubview(cardLabel)
-        view.addSubview(bankLabel)
-        view.addSubview(oddOption)
+     
+        [tittleLabel, mountLabel, cardLabel, bankLabel, oddOption].forEach{
+            view.addSubview($0)
+        }
 
         NSLayoutConstraint.activate([
             tittleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
@@ -93,6 +87,8 @@ class ResumeSheetViewController: UIViewController {
             
             oddOption.topAnchor.constraint(equalTo: bankLabel.bottomAnchor, constant: 10),
             oddOption.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            oddOption.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            oddOption.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10)
         ])
         
         guard let presentationController =  presentationController as? UISheetPresentationController else  { return }

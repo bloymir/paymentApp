@@ -1,9 +1,3 @@
-//
-//  PaymentMethodCell.swift
-//  PaymantApp
-//
-//  Created by nelson tapia on 25-02-23.
-//
 
 import UIKit
 import Kingfisher
@@ -32,13 +26,12 @@ class PaymentMethodCell: UITableViewCell {
         
         NSLayoutConstraint.activate([
             deviceImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 12),
-            deviceImageView.topAnchor.constraint(equalTo: topAnchor, constant: 12),
-            deviceImageView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -12),
             deviceImageView.widthAnchor.constraint(equalToConstant: 40),
             deviceImageView.heightAnchor.constraint(equalToConstant: 40),
+            deviceImageView.centerYAnchor.constraint(equalTo: centerYAnchor),
             
             deviceNameLabel.leadingAnchor.constraint(equalTo: deviceImageView.trailingAnchor, constant: 40),
-            deviceNameLabel.centerYAnchor.constraint(equalTo: deviceImageView.centerYAnchor),
+            deviceNameLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
         ])
     }
     
@@ -50,7 +43,7 @@ class PaymentMethodCell: UITableViewCell {
     func configure(model: PaymentMethodResponse) {
        // deviceImageView.image = UIImage(named: model.thumbnail)
         
-        if let urlString = model.thumbnail as? String {
+        if let urlString = model.thumbnail {
             if let imageURL = URL(string: urlString){
                 DispatchQueue.global().async {
                     guard let imageData = try? Data(contentsOf: imageURL) else { return }

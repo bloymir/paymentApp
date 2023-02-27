@@ -1,10 +1,3 @@
-//
-//  OddOptionService.swift
-//  PaymantApp
-//
-//  Created by nelson tapia on 25-02-23.
-//
-
 import Foundation
 import Alamofire
 
@@ -14,11 +7,9 @@ class OddOptionService {
     static let urlBase = Constants.kUrlBase
     static let oddOption = Constants.kOddOption
     static let keyPublic = "?\(Constants.kKeyString)"
-    static let mount = "&amount=\(PaymentResumeModel.shared.amountToPage!)"
+    static let mount = "&amount="
     static let paymentMethod = "&\(Constants.kPaymentMethods)_id="
     static let paymentMethodId = PaymentResumeModel.shared.paymentMethodId!
-    
-    static let url = "\( urlBase + oddOption + keyPublic + mount + paymentMethod + paymentMethodId)"
     
     static func decodeJson(data: Data) -> [PayerCosts]? {
         do { oddOptionResponse = try JSONDecoder().decode([OddOptionResponse].self, from: data) }
@@ -27,6 +18,8 @@ class OddOptionService {
     }
     
     static func getResponse(completion: @escaping ([PayerCosts]?) -> Void) {
+        let url = urlBase + oddOption + keyPublic + mount + String(PaymentResumeModel.shared.amountToPage) + paymentMethod + paymentMethodId
+        
         AF.request(url, method: .get, encoding: URLEncoding.default).response {
             response in
             if let data = response.data {
@@ -34,7 +27,4 @@ class OddOptionService {
             }
         }
     }
-    
 }
-
-
