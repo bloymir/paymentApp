@@ -19,10 +19,7 @@ class PaymentMethodService {
     static func getJson(data: Data) -> [PaymentMethodResponse]? {
         do { paymentMethods = try JSONDecoder().decode([PaymentMethodResponse].self, from: data) }
         catch let error { print("PaymenthMethodService error: \(error.localizedDescription)") }
-        let response = paymentMethods?.filter({ paymentMethod -> Bool in
-            paymentMethod.paymentTypeId == "credit_card"
-        }).sorted(by: { (first, second) -> Bool in first.name ?? "" < second.name ?? "" })
-        return response
+        return paymentMethods
     }
     
     static func getPaymentMethods(completion: @escaping ([PaymentMethodResponse]?) -> Void) {

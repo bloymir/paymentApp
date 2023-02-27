@@ -48,7 +48,9 @@ final class PaymentMethodVC: UIViewController {
     
     private func bind(){
         paymentMethodViewModel.getPaymentDataArray{ [weak self] paymentMethods in
-            self?.paymentMethods = paymentMethods
+            self?.paymentMethods = paymentMethods?.filter({ paymentMethod -> Bool in                paymentMethod.paymentTypeId == "credit_card"
+          })
+
             self?.devicesTableView.reloadData()
             self?.activityIndicator.isHidden = true
             self?.activityIndicator.stopAnimating()

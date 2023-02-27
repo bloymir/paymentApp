@@ -25,6 +25,7 @@ class ResumeSheetViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 24)
         label.textColor = .white
+        label.numberOfLines = 0
         label.text = "Tarjeta Seleccionada: \(PaymentResumeModel.shared.paymentMethodName!) "
         label.textAlignment = .center
         return label
@@ -35,6 +36,7 @@ class ResumeSheetViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 24)
         label.textColor = .white
+        label.numberOfLines = 0
         label.text = "Banco: \(PaymentResumeModel.shared.bankOptionName!) "
         return label
     }()
@@ -86,6 +88,8 @@ class ResumeSheetViewController: UIViewController {
             
             bankLabel.topAnchor.constraint(equalTo: cardLabel.bottomAnchor, constant: 10),
             bankLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            bankLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            bankLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             
             oddOption.topAnchor.constraint(equalTo: bankLabel.bottomAnchor, constant: 10),
             oddOption.centerXAnchor.constraint(equalTo: view.centerXAnchor),

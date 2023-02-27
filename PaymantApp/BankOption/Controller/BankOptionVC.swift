@@ -57,7 +57,9 @@ final class BankOptionVC: UIViewController {
     
     private func bind(){
         bankOptionViewModel.getBankOptionDataArray { [weak self] bankOptions in
-            self?.bankOptions = bankOptions
+            self?.bankOptions = bankOptions?.filter({ bankOptions -> Bool in
+                bankOptions.status == "active"
+            })
             self?.devicesTableView.reloadData()
             self?.activityIndicator.isHidden = true
             self?.activityIndicator.stopAnimating()

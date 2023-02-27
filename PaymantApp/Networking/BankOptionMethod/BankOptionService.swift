@@ -14,10 +14,7 @@ class BankOptionService {
     static func getJson(data: Data) -> [BankOptionResponse]? {
         do { bankOptions = try JSONDecoder().decode([BankOptionResponse].self, from: data) }
         catch let error { print("CardIssuerService error: \(error.localizedDescription)") }
-        let value = bankOptions?.filter({ cardIssuer -> Bool in
-            cardIssuer.status == "active"
-        }).sorted(by: { (first, second) -> Bool in first.name ?? "" < second.name ?? "" })
-        return value
+        return bankOptions
     }
     
     static func getBankOption(completion: @escaping ([BankOptionResponse]?) -> Void) {
