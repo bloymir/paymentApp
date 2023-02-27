@@ -62,12 +62,11 @@ class ResumeSheetViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .purple
+        view.backgroundColor = .systemBlue
         configureUI()
     }
     
     func configureUI(){
-     
         [tittleLabel, mountLabel, cardLabel, bankLabel, oddOption].forEach{
             view.addSubview($0)
         }

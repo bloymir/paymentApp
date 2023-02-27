@@ -1,9 +1,3 @@
-//
-//  PaymentMethodViewModel.swift
-//  PaymantApp
-//
-//  Created by nelson tapia on 25-02-23.
-//
 import Foundation
 
 class PaymentMethodViewModel {
@@ -22,7 +16,6 @@ class PaymentMethodViewModel {
         let keyPublic = "?\(Constants.kKeyString)"
         
         guard let url = URL(string: "\(urlBase + paymentMethod + keyPublic)") else { return }
-        print(url)
 
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             guard let json = data else { return }

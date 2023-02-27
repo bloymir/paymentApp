@@ -50,6 +50,15 @@ final class HomeAppVC: UIViewController {
         return button
     }()
     
+    private let errorLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .red
+        label.font = .systemFont(ofSize: 14)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "error"
+        return label
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configScroll()
@@ -74,6 +83,8 @@ final class HomeAppVC: UIViewController {
     private func configureConstraints() {
         contentView.addSubview(logoImg)
         contentView.addSubview(containerStack)
+        contentView.addSubview(errorLabel)
+        errorLabel.isHidden = true
         
         [pageButton, mountText].forEach{
             containerStack.addArrangedSubview($0)
@@ -86,7 +97,10 @@ final class HomeAppVC: UIViewController {
             containerStack.topAnchor.constraint(equalTo: logoImg.bottomAnchor, constant: 50),
             containerStack.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 30),
             containerStack.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -30),
-            containerStack.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+            containerStack.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            
+            errorLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            errorLabel.topAnchor.constraint(equalTo: containerStack.bottomAnchor, constant: 12)
         ])
     }
     
@@ -102,8 +116,8 @@ final class HomeAppVC: UIViewController {
 
         guard let value = mountText.text else { return }
         if !value.isEmpty {
-            PaymentResumeModel.shared.amountToPage = Int(value) ?? 0
-            nextNavigation()
+            let valueNumber = Int(value) ?? 0
+            validateValue(valueNumber)
         }
     }
     
@@ -115,6 +129,21 @@ final class HomeAppVC: UIViewController {
         let resumesheetViewController = ResumeSheetViewController()
         present(resumesheetViewController, animated: true)
     }
+    
+    private func validateValue(_ valor: Int){
+        if valor <= 1000 {
+            errorLabel.isHidden = false
+            errorLabel.text = "El valor debe ser mayor a $1.000"
+        } else if valor > 1500000 {
+            errorLabel.isHidden = false
+            errorLabel.text = "El valor debe ser menor a $1.500.000"
+        } else {
+            errorLabel.isHidden = true
+            errorLabel.text = ""
+            PaymentResumeModel.shared.amountToPage = valor
+            nextNavigation()
+        }
+    }
 }
 
 extension HomeAppVC: ViewScrolleable {}
@@ -124,7 +153,6 @@ extension HomeAppVC: KeyBoardDisplayable {}
 extension HomeAppVC: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         guard let text = mountText.text, !text.isEmpty else { return }
-        print(text)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

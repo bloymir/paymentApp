@@ -41,8 +41,7 @@ class PaymentMethodCell: UITableViewCell {
     }
     
     func configure(model: PaymentMethodResponse) {
-       // deviceImageView.image = UIImage(named: model.thumbnail)
-        
+      
         if let urlString = model.thumbnail {
             if let imageURL = URL(string: urlString){
                 DispatchQueue.global().async {
