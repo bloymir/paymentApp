@@ -56,8 +56,5 @@ class PaymentMethodCell: UITableViewCell {
         
         deviceNameLabel.text = model.name
     }
-    
-//    
-    
 
 }

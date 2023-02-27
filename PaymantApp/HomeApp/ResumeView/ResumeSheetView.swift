@@ -1,6 +1,6 @@
 import UIKit
 
-class ResumeSheetViewController: UIViewController {
+class ResumeSheetView: UIViewController {
     
     private let tittleLabel: UILabel = {
         let label = UILabel()
@@ -8,6 +8,7 @@ class ResumeSheetViewController: UIViewController {
         label.font = .systemFont(ofSize: 32)
         label.textColor = .white
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.textAlignment = .center
         return label
     }()
     
@@ -17,6 +18,7 @@ class ResumeSheetViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 24)
         label.textColor = .white
+        label.textAlignment = .center
         return label
     }()
     
@@ -37,6 +39,7 @@ class ResumeSheetViewController: UIViewController {
         label.font = .systemFont(ofSize: 24)
         label.textColor = .white
         label.numberOfLines = 0
+        label.textAlignment = .center
         label.text = "Banco: \(PaymentResumeModel.shared.bankOptionName!) "
         return label
     }()

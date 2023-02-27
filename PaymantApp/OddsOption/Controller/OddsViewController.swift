@@ -1,9 +1,4 @@
-//
-//  OddsViewController.swift
-//  PaymantApp
-//
-//  Created by nelson tapia on 25-02-23.
-//
+
 
 import UIKit
 
@@ -42,7 +37,6 @@ final class OddsViewController: UIViewController {
     
     override func viewDidLoad() {
         configureUI()
-    
     }
     
     override func viewWillAppear(_ animated: Bool) {

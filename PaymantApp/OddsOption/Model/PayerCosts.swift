@@ -1,9 +1,3 @@
-//
-//  PayerCosts.swift
-//  PaymantApp
-//
-//  Created by nelson tapia on 25-02-23.
-//
 
 struct PayerCosts: Codable {
     let installments: Int?

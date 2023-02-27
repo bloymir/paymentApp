@@ -126,7 +126,7 @@ final class HomeAppVC: UIViewController {
     }
     
     private func presentResumeController(){
-        let resumesheetViewController = ResumeSheetViewController()
+        let resumesheetViewController = ResumeSheetView()
         present(resumesheetViewController, animated: true)
     }
     
