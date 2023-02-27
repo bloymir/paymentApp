@@ -26,6 +26,7 @@ class ResumeSheetViewController: UIViewController {
         label.font = .systemFont(ofSize: 24)
         label.textColor = .white
         label.text = "Tarjeta Seleccionada: \(PaymentResumeModel.shared.paymentMethodName!) "
+        label.textAlignment = .center
         return label
     }()
     
@@ -80,6 +81,8 @@ class ResumeSheetViewController: UIViewController {
             
             cardLabel.topAnchor.constraint(equalTo: mountLabel.bottomAnchor, constant: 10),
             cardLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            cardLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            cardLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             
             bankLabel.topAnchor.constraint(equalTo: cardLabel.bottomAnchor, constant: 10),
             bankLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
