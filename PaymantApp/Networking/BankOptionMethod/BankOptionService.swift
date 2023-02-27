@@ -22,7 +22,7 @@ class BankOptionService {
     
     static func getBankOption(completion: @escaping ([BankOptionResponse]?) -> Void) {
         
-        var url = urlBase + kbankOption + keyPublic + paymentMethod + PaymentResumeModel.shared.paymentMethodId!
+        let url = urlBase + kbankOption + keyPublic + paymentMethod + PaymentResumeModel.shared.paymentMethodId!
       
         AF.request(url, method: .get, encoding: URLEncoding.default).response {
             response in
