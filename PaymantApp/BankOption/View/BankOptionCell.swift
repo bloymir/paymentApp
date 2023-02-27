@@ -1,9 +1,4 @@
-//
-//  BankOptionCell.swift
-//  PaymantApp
-//
-//  Created by nelson tapia on 25-02-23.
-//
+
 
 import UIKit
 import Kingfisher
@@ -47,7 +42,7 @@ class BankOptionCell: UITableViewCell {
     }
     
     func configure(model: BankOptionResponse) {
-        if let urlString = model.secure_thumbnail {
+        if let urlString = model.secureThumbnail {
             if let imageURL = URL(string: urlString){
                 DispatchQueue.global().async {
                     guard let imageData = try? Data(contentsOf: imageURL) else { return }

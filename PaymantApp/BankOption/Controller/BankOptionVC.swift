@@ -1,13 +1,7 @@
-//
-//  BankOptionVC.swift
-//  PaymantApp
-//
-//  Created by nelson tapia on 25-02-23.
-//
 
 import UIKit
 
-final class BankOptionVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+final class BankOptionVC: UIViewController {
     
     let bankOptionViewModel = BankOptionViewModel()
     var bankOptions: [BankOptionResponse]?
@@ -26,11 +20,19 @@ final class BankOptionVC: UIViewController, UITableViewDelegate, UITableViewData
     
     override func loadView() {
         super.loadView()
+        
+    }
+    override func viewDidLoad() {
+        super.viewDidLoad()
         configureUI()
         activityIndicator.center = self.view.center
-        bind()
+ 
     }
-    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        devicesTableView.reloadData()
+        
+    }
     func configureUI(){
     
         title = "Seleccione medio de pago"
@@ -39,10 +41,8 @@ final class BankOptionVC: UIViewController, UITableViewDelegate, UITableViewData
         devicesTableView.register(BankOptionCell.self, forCellReuseIdentifier:"BankOption")
         view.addSubview(devicesTableView)
         view.addSubview(activityIndicator)
-        
         activityIndicator.startAnimating()
-        bankOptionViewModel.retryDataList()
-        
+        bind()
         
         NSLayoutConstraint.activate([
             devicesTableView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -56,39 +56,42 @@ final class BankOptionVC: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     private func bind(){
-        bankOptionViewModel.refreshData = { [weak self] () in
-            DispatchQueue.main.async {
-                self?.devicesTableView.reloadData()
-                self?.activityIndicator.stopAnimating()
-                self?.activityIndicator.isHidden = true
-            }
+        bankOptionViewModel.getBankOptionDataArray { [weak self] bankOptions in
+            self?.bankOptions = bankOptions
+            self?.devicesTableView.reloadData()
+            self?.activityIndicator.isHidden = true
+            self?.activityIndicator.stopAnimating()
         }
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return bankOptionViewModel.dataArray.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = devicesTableView.dequeueReusableCell(withIdentifier: "BankOption", for: indexPath) as! BankOptionCell
-        
-        let model = bankOptionViewModel.dataArray[indexPath.row]
-        
-//        cell.configure(model: model)
-        cell.configure(model: model)
-        return cell
-    }
-    
-  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-       let model = bankOptionViewModel.dataArray[indexPath.row]
-       
-      PaymentResumeModel.shared.bankOptionName = model.name
-      PaymentResumeModel.shared.bankOptionId = model.id
-
-      nextNavigation()
-    
-    }
     private func nextNavigation(){
         self.navigationController?.pushViewController(OddsViewController(), animated: true)
     }
+    
+}
+
+extension BankOptionVC: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return bankOptions?.count ?? 0
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = devicesTableView.dequeueReusableCell(withIdentifier: "BankOption", for: indexPath) as! BankOptionCell
+
+        let model = bankOptions![indexPath.row]
+
+        cell.configure(model: model)
+        return cell
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let model = bankOptions![indexPath.row]
+
+        PaymentResumeModel.shared.bankOptionName = model.name
+        PaymentResumeModel.shared.bankOptionId = model.id
+
+        nextNavigation()
+
+    }
+
 }

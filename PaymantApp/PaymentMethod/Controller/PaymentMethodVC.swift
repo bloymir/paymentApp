@@ -78,6 +78,7 @@ extension PaymentMethodVC: UITableViewDelegate, UITableViewDataSource{
        let model = paymentMethods![indexPath.row]
        PaymentResumeModel.shared.paymentMethodId = model.id
        PaymentResumeModel.shared.paymentMethodName = model.name
+    
        nextNavigation()
     }
 }
