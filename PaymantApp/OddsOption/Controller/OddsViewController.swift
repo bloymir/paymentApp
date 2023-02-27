@@ -40,7 +40,6 @@ final class OddsViewController: UIViewController {
         
     }
     
-        
     override func viewDidLoad() {
         configureUI()
     

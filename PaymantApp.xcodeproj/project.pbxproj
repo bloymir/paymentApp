@@ -33,6 +33,7 @@
 		689D01B329AB184500FE4C2A /* PaymentResumeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689D01B229AB184500FE4C2A /* PaymentResumeModel.swift */; };
 		689D01B529AB208000FE4C2A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689D01B429AB208000FE4C2A /* Constants.swift */; };
 		689D01B829ABDCA100FE4C2A /* ResumeSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689D01B729ABDCA100FE4C2A /* ResumeSheetViewController.swift */; };
+		689D01C429AC67CC00FE4C2A /* PaymentMethodService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689D01C329AC67CC00FE4C2A /* PaymentMethodService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +67,7 @@
 		689D01B229AB184500FE4C2A /* PaymentResumeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentResumeModel.swift; sourceTree = "<group>"; };
 		689D01B429AB208000FE4C2A /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		689D01B729ABDCA100FE4C2A /* ResumeSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResumeSheetViewController.swift; sourceTree = "<group>"; };
+		689D01C329AC67CC00FE4C2A /* PaymentMethodService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PaymentMethodService.swift; path = PaymantApp/Networking/PaymentMethodService.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -250,6 +252,7 @@
 		6864F78029A9B7A80016EE6D /* PaymentMethod */ = {
 			isa = PBXGroup;
 			children = (
+				689D01C329AC67CC00FE4C2A /* PaymentMethodService.swift */,
 			);
 			path = PaymentMethod;
 			sourceTree = "<group>";
@@ -531,6 +534,7 @@
 				689D01B829ABDCA100FE4C2A /* ResumeSheetViewController.swift in Sources */,
 				689D01AA29AAE56B00FE4C2A /* PayerCosts.swift in Sources */,
 				6864F77C29A9B5E90016EE6D /* PaymentMethodVC.swift in Sources */,
+				689D01C429AC67CC00FE4C2A /* PaymentMethodService.swift in Sources */,
 				689D018929AACEF500FE4C2A /* BankOptionResponse.swift in Sources */,
 				6864F76829A98FC00016EE6D /* KeyBoardDisplayable.swift in Sources */,
 			);

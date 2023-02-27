@@ -47,9 +47,7 @@ class BankOptionCell: UITableViewCell {
     }
     
     func configure(model: BankOptionResponse) {
-       // deviceImageView.image = UIImage(named: model.thumbnail)
-        
-        if let urlString = model.secure_thumbnail as? String {
+        if let urlString = model.secure_thumbnail {
             if let imageURL = URL(string: urlString){
                 DispatchQueue.global().async {
                     guard let imageData = try? Data(contentsOf: imageURL) else { return }

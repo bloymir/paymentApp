@@ -1,6 +1,6 @@
 import UIKit
 
-final class PaymentMethodVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+final class PaymentMethodVC: UIViewController {
 
     let paymentMethodViewModel = PaymentMethodViewModel()
     var paymentMethods: [PaymentMethodResponse]?
@@ -10,8 +10,6 @@ final class PaymentMethodVC: UIViewController, UITableViewDelegate, UITableViewD
         tableview.translatesAutoresizingMaskIntoConstraints = false
         return tableview
     }()
-    
-
     
     private let activityIndicator: UIActivityIndicatorView = {
         let activity = UIActivityIndicatorView(style: .large)
@@ -23,8 +21,6 @@ final class PaymentMethodVC: UIViewController, UITableViewDelegate, UITableViewD
         super.viewDidLoad()
         configureUI()
         activityIndicator.center = self.view.center
-        bind()
-
     }
     
     func configureUI(){
@@ -37,10 +33,8 @@ final class PaymentMethodVC: UIViewController, UITableViewDelegate, UITableViewD
         view.addSubview(activityIndicator)
         
         activityIndicator.startAnimating()
-        paymentMethodViewModel.retryDataList()
-        
-       
-        
+        bind()
+    
         NSLayoutConstraint.activate([
             devicesTableView.topAnchor.constraint(equalTo: view.topAnchor),
             devicesTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
@@ -53,41 +47,38 @@ final class PaymentMethodVC: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     private func bind(){
-        paymentMethodViewModel.refreshData = { [weak self] () in
-            DispatchQueue.main.async {
-                self?.devicesTableView.reloadData()
-                self?.activityIndicator.stopAnimating()
-                self?.activityIndicator.isHidden = true
-            }
+        paymentMethodViewModel.getPaymentDataArray{ [weak self] paymentMethods in
+            self?.paymentMethods = paymentMethods
+            self?.devicesTableView.reloadData()
+            self?.activityIndicator.isHidden = true
+            self?.activityIndicator.stopAnimating()
         }
-    }
-    
-
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return paymentMethodViewModel.dataArray.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = devicesTableView.dequeueReusableCell(withIdentifier: "PaymentMethodCell", for: indexPath) as! PaymentMethodCell
-        //let model = house[indexPath.row]
-        let model = paymentMethodViewModel.dataArray[indexPath.row]
-        
-        cell.configure(model: model)
-        return cell
-    }
-    
-  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-       let model = paymentMethodViewModel.dataArray[indexPath.row]
-       PaymentResumeModel.shared.paymentMethodId = model.id
-       PaymentResumeModel.shared.paymentMethodName = model.name
-       nextNavigation()
-      
-        
     }
     
     private func nextNavigation(){
         self.navigationController?.pushViewController(BankOptionVC(), animated: true)
     }
    
+}
+
+extension PaymentMethodVC: UITableViewDelegate, UITableViewDataSource{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return paymentMethods?.count ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = devicesTableView.dequeueReusableCell(withIdentifier: "PaymentMethodCell", for: indexPath) as! PaymentMethodCell
+        let model = paymentMethods![indexPath.row]
+        
+        cell.configure(model: model)
+        return cell
+    }
+    
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+       let model = paymentMethods![indexPath.row]
+       PaymentResumeModel.shared.paymentMethodId = model.id
+       PaymentResumeModel.shared.paymentMethodName = model.name
+       nextNavigation()
+    }
 }
 
