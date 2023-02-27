@@ -49,7 +49,7 @@ final class PaymentMethodVC: UIViewController {
     private func bind(){
         paymentMethodViewModel.getPaymentDataArray{ [weak self] paymentMethods in
             self?.paymentMethods = paymentMethods?.filter({ paymentMethod -> Bool in                paymentMethod.paymentTypeId == "credit_card"
-          })
+            }).sorted(by: { (first, second) -> Bool in first.name ?? "" < second.name ?? "" })
 
             self?.devicesTableView.reloadData()
             self?.activityIndicator.isHidden = true

@@ -59,7 +59,7 @@ final class BankOptionVC: UIViewController {
         bankOptionViewModel.getBankOptionDataArray { [weak self] bankOptions in
             self?.bankOptions = bankOptions?.filter({ bankOptions -> Bool in
                 bankOptions.status == "active"
-            })
+            }).sorted(by: { (first, second) -> Bool in first.name ?? "" < second.name ?? "" })
             self?.devicesTableView.reloadData()
             self?.activityIndicator.isHidden = true
             self?.activityIndicator.stopAnimating()
