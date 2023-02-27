@@ -24,7 +24,7 @@ class PaymentMethodViewModel {
                 let decoder = JSONDecoder()
                 self.dataArrayNoFilteres = try decoder.decode([PaymentMethodResponse].self, from: json)
                 self.dataArray = self.dataArrayNoFilteres.filter({ paymentMethods -> Bool in
-                    paymentMethods.payment_type_id == "credit_card"
+                    paymentMethods.paymentTypeId == "credit_card"
                 }).sorted(by: { (one, two) -> Bool in one.name ?? "" < two.name ?? "" })
                 
             } catch let error {

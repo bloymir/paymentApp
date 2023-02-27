@@ -9,7 +9,6 @@ class PaymentResumeModel {
     var bankOptionId: String?
     var bankOptionName: String?
     var oddsOption: String?
-    var oddsAmount: String?
     var totalSelected: String?
     
     private init() {}
@@ -22,7 +21,6 @@ class PaymentResumeModel {
         PaymentResumeModel.shared.bankOptionId = ""
         PaymentResumeModel.shared.bankOptionName = ""
         PaymentResumeModel.shared.oddsOption = ""
-        PaymentResumeModel.shared.oddsAmount = ""
         PaymentResumeModel.shared.totalSelected = ""
     }
 }
