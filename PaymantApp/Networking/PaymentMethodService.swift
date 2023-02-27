@@ -10,7 +10,11 @@ import Alamofire
 
 class PaymentMethodService {
     static var paymentMethods: [PaymentMethodResponse]?
-    static let url = "https://api.mercadopago.com/v1/payment_methods?public_key=444a9ef5-8a6b-429f-abdf-587639155d88"
+    
+    static let urlBase = Constants.kUrlBase
+    static let paymentMethod = "\(Constants.kPaymentMethods)s"
+    static let keyPublic = "?\(Constants.kKeyString)"
+    
     
     static func getJson(data: Data) -> [PaymentMethodResponse]? {
         do { paymentMethods = try JSONDecoder().decode([PaymentMethodResponse].self, from: data) }
@@ -22,6 +26,8 @@ class PaymentMethodService {
     }
     
     static func getPaymentMethods(completion: @escaping ([PaymentMethodResponse]?) -> Void) {
+        let url = urlBase + paymentMethod + keyPublic
+        
         AF.request(url, method: .get, encoding: URLEncoding.default).response {
             response in
             if let data = response.data {
